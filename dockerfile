@@ -21,8 +21,6 @@ RUN chown logstash:logstash -R /opt/logstash/ /etc/logstash/ && \
 chown elasticsearch:elasticsearch -R /usr/share/elasticsearch/ /etc/elasticsearch/
 
 RUN echo "vm.max_map_count=262144" >> /etc/sysctl.conf
-
-
-ENTRYPOINT /opt/setup.sh
+#ENTRYPOINT /opt/setup.sh
 
 EXPOSE 5044 9200 5601
