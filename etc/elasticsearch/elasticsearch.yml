@@ -30,11 +30,11 @@
 #
 # Path to directory where to store the data (separate multiple locations by comma):
 #
-  path.data: /var/data/elasticsearch/
+  path.data: /data/elasticsearch/
 #
 # Path to log files:
 #
-  path.logs: /var/logs/elasticsearch/
+  path.logs: /data/logs/elasticsearch/
 #
 # ----------------------------------- Memory -----------------------------------
 #
