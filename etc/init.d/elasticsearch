@@ -66,10 +66,10 @@ MAX_OPEN_FILES=65536
 #MAX_LOCKED_MEMORY=
 
 # Elasticsearch log directory
-LOG_DIR=/var/logs/$NAME
+LOG_DIR=/data/logs/$NAME
 
 # Elasticsearch data directory
-DATA_DIR=/var/data/$NAME
+DATA_DIR=/data/$NAME
 
 # Elasticsearch configuration directory
 CONF_DIR=/etc/$NAME/
