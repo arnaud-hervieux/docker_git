@@ -40,9 +40,9 @@ emit() {
 start() {
 
   # Ensure the log directory is setup correctly.
-  [ ! -d "/var/logs/kibana/" ] && mkdir "/var/logs/kibana/"
-  chown "$user":"$group" "/var/logs/kibana/"
-  chmod 755 "/var/logs/kibana/"
+  [ ! -d "/data/logs/kibana/" ] && mkdir "/data/logs/kibana/"
+  chown "$user":"$group" "/data/logs/kibana/"
+  chmod 755 "/data/logs/kibana/"
 
 
   # Setup any environmental stuff beforehand
@@ -54,7 +54,7 @@ start() {
     
     cd \"$chdir\"
     exec \"$program\" $args
-  " >> /var/logs/kibana/kibana.stdout 2>> /var/logs/kibana/kibana.stderr &
+  " >> /data/logs/kibana/kibana.stdout 2>> /data/logs/kibana/kibana.stderr &
 
   # Generate the pidfile from here. If we instead made the forked process
   # generate it there will be a race condition between the pidfile writing
