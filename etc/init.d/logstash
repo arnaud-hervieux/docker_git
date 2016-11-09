@@ -54,7 +54,9 @@ start() {
 #ajout arnaud
   if [ ! -d $$LS_LOG_DIR ]
   then
-	mkdir -p "$LS_LOG_DIR" && chown "$LS_USER":"$LS_GROUP" "$LS_LOG_DIR" 
+	mkdir "$LS_LOG_DIR"  
+	chmod 755 "$LS_LOG_DIR"
+	chown -R "$LS_USER":"$LS_GROUP" "$LS_LOG_DIR"
   fi
   # fin ajout
 
