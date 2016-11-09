@@ -24,7 +24,8 @@ chmod 770 /opt/setup.sh
 RUN chown logstash:logstash -R /opt/logstash/ /etc/logstash/ && \
 chown elasticsearch:elasticsearch -R /usr/share/elasticsearch/ /etc/elasticsearch/
 
-#RUN sysctl -q -w vm.max_map_count=262144
+RUN echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+
 
 ENTRYPOINT /opt/setup.sh
 
