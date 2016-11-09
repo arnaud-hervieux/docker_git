@@ -11,15 +11,11 @@ apt-get update && apt-get -y install logstash kibana elasticsearch && apt-get cl
 RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 
 RUN git clone https://github.com/arnaud-hervieux/docker_git.git && \
-cp -R /docker_git/etc/ / && rm -R docker_git GPG-KEY-elasticsearch
+cp -R /docker_git/etc/ / && cp /docker_git/setup.sh /opt/setup.sh && chmod 770 /opt/setup.sh && rm -R docker_git GPG-KEY-elasticsearch
 
 RUN adduser --system elasticsearch && adduser --system logstash && adduser --system kibana && \
 addgroup --system elasticsearch && addgroup --system logstash && addgroup --system kibana && \
 usermod -g logstash logstash && usermod -g kibana kibana && usermod -g elasticsearch elasticsearch 
-
-RUN echo "#!/bin/bash" > /opt/setup.sh && \
-echo "service logstash start && service elasticsearch start && service kibana start" >> /opt/setup.sh && \
-chmod 770 /opt/setup.sh
 
 RUN chown logstash:logstash -R /opt/logstash/ /etc/logstash/ && \
 chown elasticsearch:elasticsearch -R /usr/share/elasticsearch/ /etc/elasticsearch/
