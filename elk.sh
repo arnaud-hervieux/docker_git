@@ -30,6 +30,13 @@ K_pidfile="/var/run/kibana.pid"
 
 K_ARG="-c ${K_CONF_DIR}/kibana.yml --quiet"
 
+ if [ ! -d $$LS_LOG_DIR ]
+  then
+	mkdir "$LS_LOG_DIR"  
+	chmod 755 "$LS_LOG_DIR"
+	chown -R "$LS_USER":"$LS_GROUP" "$LS_LOG_DIR"
+  fi
+
 start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $ES_USER:$ES_GROUP --pidfile $ES_pidfile --exec $ES_PROGS -- $ES_ARG
 start-stop-daemon -d $LS_HOME --start --user $LS_USER -c $LS_USER:$LS_GROUP --pidfile $LS_pidfile --exec $LS_PROGS -- $LS_ARG
 start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $KS_USER:$K_GROUP --pidfile $K_pidfile --exec $K_PROGS -- $K_ARG
