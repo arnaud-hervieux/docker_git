@@ -19,7 +19,7 @@ LS_CONF_DIR="/etc/${LS_USER}/conf.d/"
 LS_LOG_DIR="/data/logs/${LS_USER}"
 LS_pidfile="/var/run/logstash.pid"
 
-LS_ARG="agent --config ${LS_CONF_DIR} -l ${LS_LOG_DIR} --debug"
+LS_ARG="agent --config ${LS_CONF_DIR}"
 
 K_USER=kibana
 K_GROUP=kibana
@@ -37,6 +37,6 @@ K_ARG="-c ${K_CONF_DIR}/kibana.yml --quiet"
 	chown -R "$LS_USER":"$LS_GROUP" "$LS_LOG_DIR"
   fi
 
-start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $ES_USER:$ES_GROUP --pidfile $ES_pidfile --exec $ES_PROGS -- $ES_ARG
-start-stop-daemon -d $LS_HOME --start --user $LS_USER -c $LS_USER:$LS_GROUP --pidfile $LS_pidfile --exec $LS_PROGS -- $LS_ARG
-start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $KS_USER:$K_GROUP --pidfile $K_pidfile --exec $K_PROGS -- $K_ARG
+start-stop-daemon  -d $ES_HOME --start --user $ES_USER -c $ES_USER:$ES_GROUP --pidfile $ES_pidfile --exec $ES_PROGS -- $ES_ARG
+start-stop-daemon  -d $LS_HOME --start --user $LS_USER -c $LS_USER:$LS_GROUP --pidfile $LS_pidfile --exec $LS_PROGS -- $LS_ARG
+start-stop-daemon  -d $ES_HOME --start --user $ES_USER -c $KS_USER:$K_GROUP --pidfile $K_pidfile --exec $K_PROGS -- $K_ARG
