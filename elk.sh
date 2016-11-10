@@ -10,7 +10,7 @@ ES_LOG_DIR=/data/logs/$ES_USER
 ES_CONF_DIR=/etc/$ES_USER
 ES_pidfile="/var/run/"$ES_USER"/"$ES_USER".pid"
 
-ES_ARG="-d -default.path.conf=$ES_CONF_DIR"
+ES_ARG="-d -p $ES_pidfile --default.home.dir=$ES_HOME  --default.path.conf=$ES_CONF_DIR"
 
 LS_USER=logstash
 LS_GROUP=logstash
@@ -20,7 +20,7 @@ LS_CONF_DIR=/etc/$LS_USER/conf.d/
 LS_LOG_DIR=/data/logs/$LS_USER
 LS_pidfile="/var/run/logstash.pid"
 
-LS_ARG="agent-f $LS_CONF_DIR -l $LS_LOG_DIR"
+LS_ARG="agent --config $LS_CONF_DIR -l $LS_LOG_DIR --debug"
 
 K_USER=kibana
 K_GROUP=kibana
@@ -29,8 +29,8 @@ K_PROGS=/opt/kibana/bin/$K_USER
 K_CONF_DIR=/etc/$K_USER
 K_pidfile="/var/run/kibana.pid"
 
-K_ARG=" "
+K_ARG="-c $K_CONF_DIR/kibana.yml --quiet"
 
-start-stop-daemon -d $ES_HOME --start -b --user "$ES_USER" -c "$ES_USER" --pidfile "$ES_pidfile" --exec $ES_PROGS -- $ES_ARG
-start-stop-daemon -d $LS_HOME --start -b --user "$LS_USER" -c "$LS_USER" --pidfile "$LS_pidfile" --exec $LS_PROGS -- $LS_ARG
-start-stop-daemon -d $ES_HOME --start -b --user "$ES_USER" -c "$ES_USER" --pidfile "$K_pidfile" --exec $K_PROGS -- $K_ARG
+start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $ES_USER:$ES_GROUP --pidfile $ES_pidfile --exec $ES_PROGS -- $ES_ARG
+start-stop-daemon -d $LS_HOME --start --user $LS_USER -c $LS_USER:$LS_GROUP --pidfile $LS_pidfile --exec $LS_PROGS -- $LS_ARG
+start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $KS_USER:$K_GROUP --pidfile $K_pidfile --exec $K_PROGS -- $K_ARG
