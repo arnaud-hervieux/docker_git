@@ -28,7 +28,7 @@ K_PROGS=/opt/kibana/bin/$K_USER
 K_CONF_DIR=/etc/$K_USER
 K_pidfile="/var/run/kibana.pid"
 
-K_ARG="-c {$K_CONF_DIR}/kibana.yml --quiet"
+K_ARG="-c ${K_CONF_DIR}/kibana.yml --quiet"
 
 start-stop-daemon -d $ES_HOME --start --user $ES_USER -c $ES_USER:$ES_GROUP --pidfile $ES_pidfile --exec $ES_PROGS -- $ES_ARG
 start-stop-daemon -d $LS_HOME --start --user $LS_USER -c $LS_USER:$LS_GROUP --pidfile $LS_pidfile --exec $LS_PROGS -- $LS_ARG
